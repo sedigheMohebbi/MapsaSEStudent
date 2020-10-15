@@ -29,6 +29,4 @@ public class TeacherReader {
         }
         return teachers;
     }
-
-
 }

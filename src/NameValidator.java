@@ -16,7 +16,7 @@ public class NameValidator {
     public boolean validateName(String name) throws NameFormatException {
         final Pattern pattern = Pattern.compile("^[A-Za-z, ]+$");
         if (!pattern.matcher(name).matches()) {
-            throw new NameFormatException("Invalid String "+name);
+            throw new NameFormatException("Invalid String " + name);
         }
         return true;
     }

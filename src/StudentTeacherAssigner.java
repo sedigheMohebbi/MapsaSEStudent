@@ -14,11 +14,10 @@ public class StudentTeacherAssigner {
                     String[] strings = nextLine.split(" ");
                     String studentName = strings[0];
                     String teacherName = strings[1];
-                    if (NameValidator.getInstance().validateName(studentName) && NameValidator.getInstance().validateName(teacherName))
-                    {
-                       Student student = school.findStudentByName(studentName);
-                       Teacher teacher = school.findTeacherByName(teacherName);
-                       school.assignTeacherToStudent(student,teacher);
+                    if (NameValidator.getInstance().validateName(studentName) && NameValidator.getInstance().validateName(teacherName)) {
+                        Student student = school.findStudentByName(studentName);
+                        Teacher teacher = school.findTeacherByName(teacherName);
+                        school.assignTeacherToStudent(student, teacher);
                     }
                 } catch (NameFormatException | PersonNotFoundException e) {
                     System.out.println(e.getMessage());

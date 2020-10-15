@@ -5,22 +5,6 @@ public class School {
     List<Student> studentLis;
     List<Teacher> teacherList;
 
-    public List<Student> getStudentLis() {
-        return studentLis;
-    }
-
-    public void setStudentLis(List<Student> studentLis) {
-        this.studentLis = studentLis;
-    }
-
-    public List<Teacher> getTeachers() {
-        return teacherList;
-    }
-
-    public void setTeachers(List<Teacher> teachers) {
-        this.teacherList = teachers;
-    }
-
     public Student findStudentByName(String name) throws PersonNotFoundException {
         for (Student studentIem : studentLis) {
             if (studentIem.getName().equals(name)) {

@@ -6,13 +6,7 @@ public class Student extends Person {
         super(name);
     }
 
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
-
-
 }
