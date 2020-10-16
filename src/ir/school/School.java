@@ -1,5 +1,13 @@
+package ir.school;
+
+import ir.school.entity.Student;
+import ir.school.entity.Teacher;
+import ir.school.exception.PersonNotFoundException;
+import ir.school.reader.StudentReader;
+import ir.school.reader.StudentTeacherAssigner;
+import ir.school.reader.TeacherReader;
+
 import java.util.List;
-import java.util.Optional;
 
 public class School {
     List<Student> studentLis;
@@ -11,7 +19,7 @@ public class School {
                 return studentIem;
             }
         }
-        throw new PersonNotFoundException("Student \"" + name + "\" not found");
+        throw new PersonNotFoundException("ir.school.entity.Student \"" + name + "\" not found");
 
     }
 
@@ -21,7 +29,7 @@ public class School {
                 return teacherIem;
             }
         }
-        throw new PersonNotFoundException("Teacher \"" + name + "\" not found");
+        throw new PersonNotFoundException("ir.school.entity.Teacher \"" + name + "\" not found");
     }
 
     public void assignTeacherToStudent(Student student, Teacher teacher) {

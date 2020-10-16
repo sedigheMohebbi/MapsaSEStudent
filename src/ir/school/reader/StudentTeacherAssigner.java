@@ -1,3 +1,12 @@
+package ir.school.reader;
+
+import ir.school.School;
+import ir.school.entity.Student;
+import ir.school.entity.Teacher;
+import ir.school.exception.NameFormatException;
+import ir.school.exception.PersonNotFoundException;
+import ir.school.validator.NameValidator;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

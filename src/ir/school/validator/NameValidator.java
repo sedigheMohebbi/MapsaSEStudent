@@ -1,3 +1,7 @@
+package ir.school.validator;
+
+import ir.school.exception.NameFormatException;
+
 import java.util.regex.Pattern;
 
 public class NameValidator {

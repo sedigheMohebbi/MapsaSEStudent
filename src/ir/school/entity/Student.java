@@ -1,3 +1,5 @@
+package ir.school.entity;
+
 public class Student extends Person {
 
     private Teacher teacher;

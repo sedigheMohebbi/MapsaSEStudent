@@ -1,19 +1,28 @@
-import java.io.*;
+package ir.school.reader;
+
+import ir.school.entity.Teacher;
+import ir.school.exception.NameFormatException;
+import ir.school.validator.NameValidator;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentReader {
-    public List<Student> readStudentsFile() {
-        File file = new File("./school/students.txt");
+public class TeacherReader {
+    public List<Teacher> readTeachersFile() {
+        File file = new File("./school/teachers.txt");
         String nextLine;
-        ArrayList<Student> students = new ArrayList<>();
+        ArrayList<Teacher> teachers = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             nextLine = reader.readLine();
             while (nextLine != null) {
                 try {
                     if (NameValidator.getInstance().validateName(nextLine)) {
-                        Student student = new Student(nextLine.trim());
-                        students.add(student);
+                        Teacher teacher = new Teacher(nextLine.trim());
+                        teachers.add(teacher);
                     }
                 } catch (NameFormatException e) {
                     System.out.println(e);
@@ -24,6 +33,6 @@ public class StudentReader {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
-        return students;
+        return teachers;
     }
 }
