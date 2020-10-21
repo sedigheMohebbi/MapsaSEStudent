@@ -9,6 +9,8 @@ import ir.school.validator.NameValidator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 public class School {
     List<Student> studentList;
@@ -45,6 +47,11 @@ public class School {
         studentList = createStudentFromFile(reader.readFile(studentFileAddress));
         teacherList = createTeacherFromFile(reader.readFile(teacherFileAddress));
         assign(reader.readFile(teacherStudentFileAddress));
+        System.out.println(" passed students");
+        getPassedStudent().forEach(System.out::println);
+        System.out.println("passed students of Esfandi teacher:");
+        getPassedStudent("Esfandi").forEach(System.out::println);
+
     }
 
     private void assign(ArrayList<String> teacherStudentNames) {
@@ -67,10 +74,12 @@ public class School {
 
     private List<Student> createStudentFromFile(List<String> studentsName) {
         List<Student> students = new ArrayList<>();
-        for (int i = 0; i < studentsName.size() - 1; i++) {
+        Random random = new Random();
+        for (String s : studentsName) {
             try {
-                if (NameValidator.getInstance().validateName(studentsName.get(i))) {
-                    Student student = new Student(studentsName.get(i).trim());
+                if (NameValidator.getInstance().validateName(s)) {
+                    Student student = new Student(s.trim());
+                    student.setPassed(random.nextBoolean());
                     students.add(student);
                 }
             } catch (NameFormatException e) {
@@ -80,12 +89,21 @@ public class School {
         return students;
     }
 
+    private List<Student> getPassedStudent() {
+        return studentList.stream().filter(Student::isPassed).collect(Collectors.toList());
+    }
+
+    private List<Student> getPassedStudent(String  teacherName) {
+        return studentList.stream().filter(student -> student.getTeacher() !=null).filter(student -> student.getTeacher().getName().equals(teacherName))
+                .filter(Student::isPassed).collect(Collectors.toList());
+    }
+
     private List<Teacher> createTeacherFromFile(List<String> teachersName) {
         List<Teacher> teachers = new ArrayList<>();
-        for (int i = 0; i < teachersName.size() - 1; i++) {
+        for (String s : teachersName) {
             try {
-                if (NameValidator.getInstance().validateName(teachersName.get(i))) {
-                    Teacher teacher = new Teacher(teachersName.get(i).trim());
+                if (NameValidator.getInstance().validateName(s)) {
+                    Teacher teacher = new Teacher(s.trim());
                     teachers.add(teacher);
                 }
             } catch (NameFormatException e) {
@@ -98,6 +116,7 @@ public class School {
     public static void main(String[] args) {
         School school = new School();
         school.run();
+
     }
 
 }
